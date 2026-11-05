@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="SIRMA – Туркийн эрдэст ус, байгалийн жимсний амттай оргилуун рашаан.">
+<title>SIRMA – Туркийн эрдэст рашаан</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f3f8f2; --surface:#ffffff; --ink:#0b2316; --muted:#4f6a5a; --line:#d4e3d8;
+  --deep:#0a4a2a; --deep-ink:#f1fbf4; --pop:#ffd23f;
+  --head:"Unbounded","Manrope","Segoe UI",Arial,sans-serif;
+  --body:"Manrope","Segoe UI",Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#07130c; --surface:#0f2518; --ink:#eaf7ee; --muted:#9bb8a5; --line:#1d3b29;
+    --deep:#0d3a22; --deep-ink:#eaf7ee;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#07130c; --surface:#0f2518; --ink:#eaf7ee; --muted:#9bb8a5; --line:#1d3b29;
+  --deep:#0d3a22; --deep-ink:#eaf7ee;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+.hero{--pbg:#7cc8ea;--pink:#0a2a3a;background:var(--pbg);color:var(--pink);overflow:hidden;transition:background .45s ease,color .45s ease}
+.brand{font-family:var(--head);font-weight:900;font-size:1.2rem;letter-spacing:.06em;padding:22px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"intro show" "pick show";column-gap:48px;align-items:center;padding-bottom:48px}
+.intro{grid-area:intro;align-self:end}
+.pick{grid-area:pick;align-self:start}
+.show{grid-area:show}
+h1{font-family:var(--head);font-weight:900;font-size:clamp(2.6rem,6.6vw,5.4rem);line-height:1;letter-spacing:-.05em;margin:0 0 18px}
+.lead{font-size:1.08rem;max-width:44ch;margin:0 0 28px;opacity:.88}
+.name{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:0 0 2px;padding-top:24px;border-top:2px solid currentColor}
+.name b{font-family:var(--head);font-weight:700;font-size:clamp(1.3rem,2.6vw,1.8rem);letter-spacing:-.03em}
+.name span{font-family:var(--head);font-weight:700;font-size:1.1rem}
+.en{margin:0 0 20px;opacity:.75;font-size:.95rem;min-height:1.5em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-weight:700;font-size:.92rem;color:inherit;background:transparent;border:2px solid currentColor;border-radius:999px;
+  padding:7px 16px 7px 12px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;transition:background .2s,color .2s}
+.chip i{width:12px;height:12px;border-radius:50%;background:var(--c);border:2px solid currentColor;display:block}
+.chip[aria-pressed="true"]{background:var(--pink);color:var(--pbg)}
+.chip[aria-pressed="true"] i{border-color:var(--pbg)}
+.chip:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+
+.show{position:relative;display:flex;justify-content:center;align-items:flex-end;height:clamp(460px,78vh,720px)}
+.show::before{content:"";position:absolute;width:min(88%,470px);aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.26);left:50%;top:52%;transform:translate(-50%,-50%)}
+.show::after{content:"";position:absolute;bottom:0;left:50%;width:min(62%,380px);height:22px;transform:translateX(-50%);
+  background:radial-gradient(ellipse at center,rgba(0,0,0,.28),transparent 70%);filter:blur(4px)}
+.pics{position:relative;z-index:1;height:100%;aspect-ratio:423/518}
+.pics img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:translateY(8px) scale(.98);
+  transition:opacity .35s ease,transform .45s ease}
+.pics img.on{opacity:1;transform:none}
+
+.why{padding:64px 20px 8px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.why .item{padding:22px 0 0;border-top:2px solid var(--ink)}
+.why h3{font-family:var(--head);font-weight:700;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.2;letter-spacing:-.03em;margin:0 0 8px}
+.why p{margin:0;color:var(--muted);max-width:54ch}
+
+
+.sec-title{font-family:var(--head);font-weight:700;font-size:1.3rem;letter-spacing:-.02em;margin:48px 0 6px}
+.sec-sub{color:var(--muted);margin:0 0 18px}
+.where{display:flex;flex-wrap:wrap;gap:10px}
+.where span{background:var(--surface);border:1px solid var(--line);padding:10px 18px;border-radius:999px;font-weight:600}
+
+.contact{background:var(--deep);color:var(--deep-ink);padding:64px 0;margin-top:64px;text-align:center}
+.contact h2{font-family:var(--head);font-weight:900;font-size:clamp(1.8rem,6vw,3.6rem);letter-spacing:-.05em;line-height:1.05;margin:0 0 12px}
+.contact p{margin:0 auto 24px;max-width:46ch;opacity:.85}
+.nums{display:flex;flex-wrap:wrap;gap:6px 40px;justify-content:center}
+.big{font-family:var(--head);font-weight:700;font-size:clamp(1.8rem,7vw,3.2rem);letter-spacing:-.03em;color:var(--pop)}
+footer{padding:20px 0 32px;background:var(--deep);color:var(--deep-ink);font-size:.85rem}
+footer .wrap{opacity:.75}
+
+@media (max-width:820px){
+  .grid{grid-template-columns:1fr;grid-template-areas:"intro" "show" "pick"}
+  .show{height:440px;margin:0 0 24px}
+  .lead{margin-bottom:0}
+  .why{grid-template-columns:1fr;gap:20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero" id="hero" aria-live="polite">
+    <div class="wrap">
+      <div class="brand">SIRMA</div>
+      <div class="grid">
+        <div class="intro">
+          <h1>Таныг сэргээнэ.</h1>
+          <p class="lead">Туркийн хамгийн алдартай эрдэст ус болон байгалийн жимсний амттай оргилуун рашаан. Эрүүл мэндийн рашаан.</p>
+        </div>
+        <div class="pick">
+          <p class="name"><b id="nm">Эрдэст ус</b><span>3,300₮</span></p>
+          <p class="en" id="en">Natural Rich Mineral Water · 250мл</p>
+          <div class="chips">
+        <button class="chip" aria-pressed="true" style="--c:#7cc8ea" data-i="0" data-bg="#7cc8ea" data-ink="#0a2a3a" data-sh="Ус" data-nm="Эрдэст ус" data-en="Natural Rich Mineral Water · 250мл"><i></i>Эрдэст ус</button>
+        <button class="chip" aria-pressed="false" style="--c:#ff9a3c" data-i="1" data-bg="#ff9a3c" data-ink="#3a1800" data-sh="Мандарин" data-nm="Мандарин" data-en="Mandarin Flavored"><i></i>Мандарин</button>
+        <button class="chip" aria-pressed="false" style="--c:#ffe14a" data-i="2" data-bg="#ffe14a" data-ink="#3a3000" data-sh="Лимон" data-nm="Лимон" data-en="Lemon Flavored"><i></i>Лимон</button>
+        <button class="chip" aria-pressed="false" style="--c:#6f2a8f" data-i="3" data-bg="#6f2a8f" data-ink="#fbeaff" data-sh="Бөөрөлзгөнө" data-nm="Хар тут, бөөрөлзгөнө" data-en="Black Mulberry &amp; Blackberry Flavored"><i></i>Хар тут, бөөрөлзгөнө</button>
+        <button class="chip" aria-pressed="false" style="--c:#8fd14f" data-i="4" data-bg="#8fd14f" data-ink="#10300a" data-sh="Алим" data-nm="Алим" data-en="Apple Flavored"><i></i>Алим</button>
+        <button class="chip" aria-pressed="false" style="--c:#ffb627" data-i="5" data-bg="#ffb627" data-ink="#3a2200" data-sh="Манго" data-nm="Манго, хан боргоцой" data-en="Mango &amp; Pineapple Flavored"><i></i>Манго, хан боргоцой</button>
+          </div>
+        </div>
+        <div class="show">
+          <div class="pics">
+            <img class="on" src="images/water.webp" alt="SIRMA эрдэст ус">
+            <img src="images/mandarin.webp" alt="SIRMA мандарин">
+            <img src="images/lemon.webp" alt="SIRMA лимон">
+            <img src="images/blackberry.webp" alt="SIRMA хар тут, бөөрөлзгөнө">
+            <img src="images/apple.webp" alt="SIRMA алим">
+            <img src="images/mango.webp" alt="SIRMA манго, хан боргоцой">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why wrap">
+    <div class="item"><h3>Туркийн хамгийн алдартай эрдэст ус</h3><p>Байгалийн эрдэс бодисоор баялаг рашааны ус.</p></div>
+    <div class="item"><h3>Жимсний жинхэнэ амт</h3><p>Байгалийн жимсний амттай, оргилуун.</p></div>
+    <div class="item"><h3>Эрүүл мэндийн рашаан</h3><p>Өдөр бүр хүссэн цагтаа сэргэхэд.</p></div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="sec-title">Хаанаас авах вэ</h2>
+    <p class="sec-sub">Дараах дэлгүүр, эмийн сангуудаас авах боломжтой.</p>
+    <div class="where">
+      <span>Имарт</span><span>Номин</span><span>Оргил</span><span>Сансар</span><span>Carrefour</span><span>Efes</span><span>Монос эмийн сан</span>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="wrap">
+      <h2>Асуух зүйл байна уу?</h2>
+      <p>Захиалга, лавлах мэдээллийг утсаар авна.</p>
+      <div class="nums"><span class="big">9977-4455</span><span class="big">9918-6863</span></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© SIRMA</div></footer>
+
+<script>
+(function(){
+  var h=document.getElementById('hero'),chips=document.querySelectorAll('.chip'),imgs=document.querySelectorAll('.pics img');
+  chips.forEach(function(b){
+    b.addEventListener('click',function(){
+      chips.forEach(function(c){c.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      h.style.setProperty('--pbg',b.dataset.bg);
+      h.style.setProperty('--pink',b.dataset.ink);
+      document.getElementById('nm').textContent=b.dataset.nm;
+      document.getElementById('en').textContent=b.dataset.en;
+      imgs.forEach(function(im,i){im.classList.toggle('on',i==b.dataset.i)});
+    });
+  });
+})();
+</script>
+</body>
+</html>
